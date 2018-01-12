@@ -4,7 +4,7 @@ package lixin.algorithms.tree;
 public class BinaryTreeTest {
     public static void main(String[] args){
         BinaryTree binaryTree = new BinaryTree();
-        /*binaryTree.put(1);
+        binaryTree.put(1);
         binaryTree.put(6);
         binaryTree.put(5);
         binaryTree.put(0);
@@ -13,9 +13,16 @@ public class BinaryTreeTest {
         binaryTree.put(9);
         binaryTree.put(8);
         binaryTree.put(6);
-        binaryTree.put(7);*/
+        binaryTree.put(7);
 
         binaryTree.inOrder();
+        binaryTree.delete(8);
+        System.out.println();
+        binaryTree.inOrder();
+        binaryTree.delete(1);
+        System.out.println();
+        binaryTree.inOrder();
+
     }
 
 }
