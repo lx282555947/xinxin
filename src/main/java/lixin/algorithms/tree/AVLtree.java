@@ -51,7 +51,24 @@ public class AVLtree {
         newRoot.height = Math.max(height(newRoot.leftChild), height(newRoot.rightChild)) + 1;
         return newRoot;
     }
+
     //左右旋
+    public TreeNode leftRightRotate(TreeNode root) {
+        //根节点的左孩子先左旋
+        root.leftChild = leftRotate(root.leftChild);
+        //再以根节点右旋并返回
+        return rightRotate(root);
+
+    }
+
     //右左旋
+    public TreeNode rightLeftRotate(TreeNode root) {
+        //根节点的右孩子右旋
+        root.rightChild = rightRotate(root.rightChild);
+        //再以根节点左旋并返回
+        return leftRotate(root);
+    }
+
+    //插入数据
 
 }
