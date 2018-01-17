@@ -1,7 +1,5 @@
 package lixin.algorithms.tree;
 
-import javax.swing.tree.TreeNode;
-
 /**
  * @Author lixin@wecash.net
  * @Date 2018/1/12 11:07
