@@ -9,13 +9,19 @@ import javax.swing.tree.TreeNode;
  */
 public class AVLtree {
 
+    private TreeNode root;
     //内部节点类
     private class TreeNode{
+
         private TreeNode leftChild;
         private TreeNode rightChild;
         private int height;
+        private int value;
 
-
+        public TreeNode(int value, int height) {
+            this.value = value;
+            this.height = height;
+        }
     }
 
     public int height(TreeNode node) {
@@ -70,5 +76,43 @@ public class AVLtree {
     }
 
     //插入数据
-
+    public void put(int value) {
+        root = put(root, value);
+    }
+    private TreeNode put(TreeNode current,int value){
+        if (null == current) {
+            return new TreeNode(value, 0);
+        }
+        if (value < current.value) {
+            current.leftChild = put(current.leftChild, value);
+        } else if (value > current.value) {
+            current.rightChild = put(current.rightChild, value);
+        }else {
+            current.value = value;
+        }
+        //重新计算高度
+        current.height = Math.max(height(current.leftChild), height(current.rightChild)) + 1;
+        //判断是否打破平衡
+        //若左侧节点数量比右侧节点数量大2，则在整体上需要右旋
+        if ((height(current.leftChild) - height(current.rightChild)) >= 2) {
+            //若左节点的子节点与之同侧
+            if (height(current.leftChild.leftChild) >= height(current.leftChild.rightChild)) {
+                //直接右旋
+                rightRotate(current);
+            }else {
+                //左右旋
+                leftRightRotate(current);
+            }
+        } else if ((height(current.leftChild) - height(current.rightChild)) <= 2) {
+            //若右节点的子节点与之同侧
+            if (height(current.rightChild.rightChild) >= height(current.rightChild.leftChild)) {
+                //直接左旋
+                leftRightRotate(current);
+            } else {
+                //右左旋
+                rightLeftRotate(current);
+            }
+        }
+        return current;
+    }
 }
